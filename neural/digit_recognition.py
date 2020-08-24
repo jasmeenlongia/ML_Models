@@ -2,25 +2,9 @@ import tensorflow as tf
 from tensorflow import keras
 import numpy as np
 import matplotlib.pyplot as plt 
+from keras.datasets import mnist
 
-import pandas as pd
-data=pd.read_csv("train.csv")
-
-x=data.iloc[:,1:]
-y=data.iloc[:,0]
-
-from sklearn.model_selection import train_test_split
-train_images,test_images,train_labels,test_labels= train_test_split(x,y,test_size=0.3, random_state=100)
-
-train_images.shape #29400 examples with 784 pixels
-
-train_images=train_images.to_numpy()
-train_images=train_images.reshape(29400,28,28)
-test_images=test_images.to_numpy()
-test_images=test_images.reshape(12600,28,28)
-
-train_labels=train_labels.to_numpy()
-test_labels=test_labels.to_numpy()
+(train_images, train_labels), (test_images, test_labels) = mnist.load_data()
 
 class_names = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9']
 #scaling the data to be btw 0 and 1
